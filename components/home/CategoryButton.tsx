@@ -13,7 +13,7 @@ const CategoryButton: React.FC<Props> = (props) => {
     <button
       type="button"
       onClick={onClick}
-      className={`px-[6px] py-1 rounded-full border border-[#181818] bg-[#F8F8F8] text-[#181818] text-[12px] text-nowrap ${
+      className={`px-[6px] lg:px-[14px] py-1 lg:py-[10px] rounded-full border border-[#181818] bg-[#F8F8F8] text-[#181818] text-[12px] lg:text-[28px] text-nowrap ${
         active === name ? "bg-black font-bold text-[#CBE023]" : ""
       }`}
     >

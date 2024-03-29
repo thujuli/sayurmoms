@@ -66,15 +66,19 @@ const Products: React.FC = () => {
         className="hidden lg:block object-fill"
       />
 
-      <div className="absolute top-16 left-1/2 -translate-x-1/2 w-full space-y-5 px-2">
+      <div className="absolute top-10 lg:top-1/2 lg:-translate-y-1/2 left-1/2 -translate-x-1/2 w-full space-y-5 lg:space-y-[60px] px-2 lg:px-[68px]">
         {/* Heading */}
-        <div className="text-center leading-none">
-          <p className="text-[12px] text-[#232323]">4 Pilihan Teratas</p>
-          <p className="text-xl font-bold text-[#181818]">Produk Unggulan</p>
+        <div className="text-center leading-none lg:leading-loose">
+          <p className="lg:mb-[10px] text-[12px] lg:text-[40px] text-[#232323]">
+            4 Pilihan Teratas
+          </p>
+          <p className="text-xl lg:text-[64px] font-bold text-[#181818]">
+            Produk Unggulan
+          </p>
         </div>
         {/* Select Category */}
         <div className="flex justify-center">
-          <div className="flex gap-1 flex-nowrap overflow-x-auto no-scrollbar">
+          <div className="flex gap-1 lg:gap-10 flex-nowrap overflow-x-auto no-scrollbar">
             {categories.map((category, idx) => (
               <CategoryButton
                 key={idx}
@@ -89,7 +93,7 @@ const Products: React.FC = () => {
         </div>
         {/* Products */}
         <div className="flex justify-center">
-          <div className="flex gap-[10px] flex-nowrap overflow-x-auto no-scrollbar">
+          <div className="flex gap-[10px] lg:gap-10 flex-nowrap overflow-x-auto no-scrollbar">
             {productsByCategory.map((product: any, idx) => (
               <ProductCard
                 key={idx}
