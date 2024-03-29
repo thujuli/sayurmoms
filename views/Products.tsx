@@ -66,7 +66,7 @@ const Products: React.FC = () => {
         className="hidden lg:block object-fill"
       />
 
-      <div className="absolute top-10 lg:top-1/2 lg:-translate-y-1/2 left-1/2 -translate-x-1/2 w-full space-y-5 lg:space-y-[60px] px-2 lg:px-[68px]">
+      <div className="absolute top-10 lg:top-1/2 lg:-translate-y-1/2 left-1/2 -translate-x-1/2 w-full space-y-5 lg:space-y-[60px] px-2 lg:px-[60px]">
         {/* Heading */}
         <div className="text-center leading-none lg:leading-loose">
           <p className="lg:mb-[10px] text-[12px] lg:text-[40px] text-[#232323]">
