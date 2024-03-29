@@ -49,7 +49,7 @@ const AboutUs = () => {
                     <p className="text-[#A7BB09] text-xl lg:text-3xl font-extrabold lg:font-semibold transition duration-300 ease-in-out group-hover:font-extrabold">
                       {item.number}
                     </p>
-                    <p className="text-[#909090] text-[10px] lg:text-base relative lg:static -bottom-1 lg:top-0 transition duration-300 ease-in-out group-hover:text-white group-hover:font-bold">
+                    <p className="text-[#909090] text-[12px] lg:text-base relative lg:static -bottom-1 lg:top-0 transition duration-300 ease-in-out group-hover:text-white group-hover:font-bold">
                       {item.text}
                     </p>
                   </div>
