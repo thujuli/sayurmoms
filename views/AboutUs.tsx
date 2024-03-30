@@ -1,13 +1,13 @@
 import Container from "@/components/ui/container";
 import Image from "next/image";
 import React from "react";
-import photo from "@/public/about_us.png";
-import mobilePhoto from "@/public/about_mobile.png";
+import photo from "@/public/images/about_us.png";
+import mobilePhoto from "@/public/images/about_mobile.png";
 import { ShoppingCart, UsersRound, Rocket, LineChart } from "lucide-react";
 
 const AboutUs = () => {
   return (
-    <section className="py-3 lg:py-24">
+    <section id="about_us" className="py-3 lg:py-24">
       <Container>
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-[1280px] lg:pr-12 order-2 lg:order-1">
