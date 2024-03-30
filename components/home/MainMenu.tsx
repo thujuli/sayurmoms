@@ -1,7 +1,7 @@
 "use client";
 
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer";
 import { CircleHelp, MenuIcon, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -49,12 +49,11 @@ const MainMenu: React.FunctionComponent<IMainMenuProps> = (props) => {
                   quality={100}
                 />
               </Link>
-              <Link href="/">
-                <ShoppingCart
-                  size={20}
-                  className="bg-[#CBE023] text-[#232323] border border-[#F8f8f8] rounded-md"
-                />
-              </Link>
+              <div className="bg-[#CBE023] text-[#232323] rounded-md border border-[#F8f8f8] flex">
+                <Link href="/">
+                  <ShoppingCart size={20} className="text-base" />
+                </Link>
+              </div>
             </div>
           </div>
         </DrawerTrigger>
@@ -71,7 +70,7 @@ const MainMenu: React.FunctionComponent<IMainMenuProps> = (props) => {
                 className="flex justify-center items-center"
               />
             </Link>
-            <ul className="lg:block">
+            <ul className="block">
               {nav_link.map((link, idx) => (
                 <Link
                   href={link.href}
