@@ -1,20 +1,20 @@
 import Container from "@/components/ui/container";
 import Image from "next/image";
 import React from "react";
-import photo from "@/public/about_us.png";
-import mobilePhoto from "@/public/about_mobile.png";
+import photo from "@/public/images/about_us.png";
+import mobilePhoto from "@/public/images/about_mobile.png";
 import { ShoppingCart, UsersRound, Rocket, LineChart } from "lucide-react";
 
 const AboutUs = () => {
   return (
-    <section className="py-3 lg:py-24">
+    <section id="about_us" className="py-3 lg:py-24">
       <Container>
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-[1280px] lg:pr-12 order-2 lg:order-1">
             <Image src={photo} alt="about_us" className="w-full h-auto" />
           </div>
           <div className="w-full lg:w-1/2 mt-8 lg:mt-0 order-1 lg:order-2 text-center md:text-left">
-            <h2 className="text-[#909090] text-base lg:text-3xl font-medium mb-2">
+            <h2 className="text-[#909090] text-base lg:text-3xl font-medium mb-0 md:mb-2">
               Tentang Kami
             </h2>
             <h1 className="text-[#A7BB09] lg:text-black text-2xl lg:text-5xl font-extrabold mb-8">
@@ -49,20 +49,20 @@ const AboutUs = () => {
                     <p className="text-[#A7BB09] text-xl lg:text-3xl font-extrabold lg:font-semibold transition duration-300 ease-in-out group-hover:font-extrabold">
                       {item.number}
                     </p>
-                    <p className="text-[#909090] text-[10px] lg:text-base relative lg:static -bottom-1 lg:top-0 transition duration-300 ease-in-out group-hover:text-white group-hover:font-bold">
+                    <p className="text-[#909090] text-[12px] lg:text-base relative lg:static -bottom-1 lg:top-0 transition duration-300 ease-in-out group-hover:text-white group-hover:font-bold">
                       {item.text}
                     </p>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="px-4 lg:px-0">
-              <p className="text-black text-base lg:text-xl mb-6">
+            <div className="px-4 mx-4 lg:mx-0 lg:px-0">
+              <p className="text-black text-[10px] lg:text-xl mb-3 lg:mb-6">
                 Sayurmoms merupakan pasar online yang menyediakan berbagai bahan
                 makanan seperti sayur, buah, daging, ikan, frozen food, bumbu
                 dapur dan aneka bahan makanan kering lainnya.
               </p>
-              <p className="text-black text-base lg:text-xl">
+              <p className="text-black text-[10px] lg:text-xl">
                 Beroperasi di kota Surabaya sejak Juni 2020, Sayurmoms kini
                 telah melayani banyak pelanggan di berbagai kota di pulau Jawa.
               </p>
