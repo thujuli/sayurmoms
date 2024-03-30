@@ -6,7 +6,10 @@ const Categories: React.FC = async () => {
   const categories = await fetchCategories();
 
   return (
-    <div className="px-5 lg:px-[70px] py-[30px] lg:py-[60px]">
+    <section
+      className="px-5 lg:px-[70px] py-[30px] lg:py-[60px]"
+      id="categories"
+    >
       <div className="mb-5 font-bold text-[20px]  leading-tight lg:hidden">
         <p className="text-[#181818] leading-tight">Apa saja product</p>
         <p className="text-[#A7BB09]">Saryurmoms?</p>
@@ -17,7 +20,7 @@ const Categories: React.FC = async () => {
           <p className="text-[#181818]">Apa saja product</p>
           <p className="text-[#A7BB09]"> Saryurmoms?</p>
         </div>
-        {categories?.map((category, idx) => (
+        {categories?.map((category: any, idx: number) => (
           <CategoryCard
             key={idx}
             description={category.description}
@@ -27,7 +30,7 @@ const Categories: React.FC = async () => {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
