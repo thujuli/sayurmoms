@@ -9,14 +9,38 @@ import { testimonials } from "@/lib/testimonialData";
 const Testimoni = () => {
   return (
     <section id="testimoni" className="relative">
-      <Image
-        src={backgroundDesktop}
-        alt="Background Testimoni Desktop"
-        layout="fill"
-        objectFit="cover"
-        className="absolute inset-0 z-0 hidden md:block"
-      />
-      <div className="relative md:hidden w-full h-[360px] overflow-hidden">
+      {/* Bagian ini hanya akan tampil pada ukuran layar md ke atas */}
+      <div className="hidden lg:block relative inset-0 z-0">
+        <Image
+          src={backgroundDesktop}
+          alt="Background Testimoni Desktop"
+          layout="fill"
+          objectFit="cover"
+        />
+        <Container>
+          <div className="relative z-10 py-36">
+            <p className="text-white text-center font-medium text-3xl pb-4">
+              Ulasan
+            </p>
+            <h2 className="text-6xl font-extrabold text-center text-white mb-24">
+              Apa kata mereka{" "}
+              <div className="mt-4">
+                tentang <span className="text-[#A7BB09]">Sayurmoms?</span>{" "}
+              </div>
+            </h2>
+            <div className="px-16 flex lg:space-x-12 overflow-x-scroll no-scrollbar">
+              {testimonials.slice(0, 8).map((testimonial, index) => (
+                <div key={index} className="flex-shrink-0 w-[600px]">
+                  <CardTestimoni {...testimonial} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Bagian ini hanya akan tampil pada ukuran layar dibawah md */}
+      <div className="relative md:hidden w-full h-[360px] overflow-hidden z-10">
         <Image
           src={backgroundMobile}
           alt="Background Testimoni Mobile"
@@ -43,26 +67,6 @@ const Testimoni = () => {
           </div>
         </div>
       </div>
-      <Container>
-        <div className="relative z-10 py-36">
-          <p className="text-white text-center font-medium text-3xl pb-4">
-            Ulasan
-          </p>
-          <h2 className="text-6xl font-extrabold text-center text-white mb-24">
-            Apa kata mereka{" "}
-            <div className="mt-4">
-              tentang <span className="text-[#A7BB09]">Sayurmoms?</span>{" "}
-            </div>
-          </h2>
-          <div className="px-16 flex lg:space-x-12 overflow-x-scroll no-scrollbar">
-            {testimonials.slice(0, 8).map((testimonial, index) => (
-              <div key={index} className="flex-shrink-0 w-[600px]">
-                <CardTestimoni {...testimonial} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </Container>
     </section>
   );
 };
