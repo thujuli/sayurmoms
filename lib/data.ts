@@ -1,4 +1,4 @@
-import { getCategories } from "./contentful";
+
 import { resolveError } from "./error";
 
 export const fetchCategories = async () => {
@@ -20,3 +20,45 @@ export const fetchCategories = async () => {
     console.error(resolveError(error));
   }
 };
+
+
+export const fetchProducts = async () => {
+  try {
+    const response = await getProducts();
+    if (response) {
+      const newResponse = response.map((product: any) => {
+        return {
+          title: product.title,
+          imageUrl: "https:" + product.image.fields.file.url,
+          price: product.price,
+          sold: product.sold,
+          rating: product.rating,
+          discount: product.discount,
+          category: product.category.fields.title,
+          link: product.link,
+        };
+      });
+
+      return newResponse;
+    }
+  } catch (error) {
+    console.error(resolveError(error));
+  }
+};
+
+export const fetchBanner = async () => {
+  try {
+    const response: any[] | undefined = await getBanner();
+    if (response) {
+      const { title, link, image } = response[0];
+      return {
+        title,
+        link,
+        imageUrl: "https:" + image.fields.file.url,
+      };
+    }
+  } catch (error) {
+    console.error(resolveError(error));
+  }
+};
+
