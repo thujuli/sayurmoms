@@ -47,7 +47,7 @@ const Products: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-[434px] lg:h-[1360px]">
+    <section id="products" className="relative w-full h-[434px] lg:h-[1360px]">
       {/* Background */}
       <Image
         src={backgroundMobile}
@@ -109,7 +109,7 @@ const Products: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
