@@ -10,7 +10,7 @@ export const fetchCategories = async () => {
           title: category.title,
           description: category.description,
           link: category.link,
-          imgUrl: "https:" + category.image.fields.file.url,
+          imageUrl: "https:" + category.image.fields.file.url,
         };
       });
 

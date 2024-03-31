@@ -1,20 +1,22 @@
+"use client";
 import { numberFormat, priceToIDR } from "@/lib/parser";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import starIcon from "@/public/icons/star.svg";
-import { Button } from "../ui/button";
+import { CategoryData, ProductData } from "@/lib/types";
+import CategoryButton from "./CategoryButton";
 
-interface Props {
-  title: string;
+interface ProductCardProps {
   imageUrl: string;
-  price: number;
-  sold: number;
-  rating: number;
-  discount?: number;
   link: string;
+  price: number;
+  rating: number;
+  sold: number;
+  title: string;
+  discount?: number;
 }
 
-const ProductCard: React.FC<Props> = (props) => {
+const ProductCard: React.FC<ProductCardProps> = (props) => {
   const { imageUrl, link, price, rating, sold, title, discount } = props;
   const priceIDR = priceToIDR(price);
   const soldIDN = numberFormat(sold);
@@ -104,4 +106,84 @@ const ProductCard: React.FC<Props> = (props) => {
   );
 };
 
-export default ProductCard;
+interface ProductsCategoriesProps {
+  categories?: CategoryData[];
+  products?: ProductData[];
+}
+
+const ProductsCategories: React.FC<ProductsCategoriesProps> = (props) => {
+  const { categories: getCategories, products: getProducts } = props;
+
+  const [products, setProducts] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
+  const [productsByCategory, setProductsByCategory] = useState<any[]>([]);
+  const [categorySelected, setCategorySelected] = useState("");
+
+  useEffect(() => {
+    setProductsCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const setProductsCategories = async () => {
+    if (getCategories && getProducts) {
+      const newCategories = getCategories.map(
+        (category: CategoryData) => category.title
+      );
+      const newProductsByCategories = getProducts.filter(
+        (product: ProductData) => product.category === newCategories[0]
+      );
+
+      setProducts(getProducts);
+      setProductsByCategory(newProductsByCategories);
+      setCategories(newCategories);
+      setCategorySelected(newCategories[0]);
+    }
+  };
+
+  const onHandleSelectCategory = (category: string) => {
+    setCategorySelected(category);
+    const newProductsByCategories = products.filter(
+      (product) => product.category === category
+    );
+    setProductsByCategory(newProductsByCategories);
+  };
+
+  return (
+    <>
+      {/* Select Category */}
+      <div className="flex justify-center">
+        <div className="flex gap-1 lg:gap-10 flex-nowrap overflow-x-auto no-scrollbar">
+          {categories.map((category, idx) => (
+            <CategoryButton
+              key={idx}
+              name={category}
+              active={categorySelected}
+              onClick={() => {
+                onHandleSelectCategory(category);
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      {/* Products */}
+      <div className="flex justify-center">
+        <div className="flex gap-[10px] lg:gap-10 flex-nowrap overflow-x-auto no-scrollbar">
+          {productsByCategory.map((product: any, idx) => (
+            <ProductCard
+              key={idx}
+              imageUrl={product.imageUrl}
+              link={product.link}
+              price={product.price}
+              rating={product.rating}
+              sold={product.sold}
+              title={product.title}
+              discount={product.discount}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default ProductsCategories;

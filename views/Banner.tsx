@@ -1,6 +1,5 @@
 import BannerCard from "@/components/home/BannerCard";
 import { fetchBanner } from "@/lib/data";
-
 import React from "react";
 
 const Banner: React.FC = async () => {
