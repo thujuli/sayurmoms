@@ -24,7 +24,7 @@ const Categories: React.FC = async () => {
           <CategoryCard
             key={idx}
             description={category.description}
-            imgUrl={category.imgUrl}
+            imageUrl={category.imageUrl}
             link={category.link}
             title={category.title}
           />
