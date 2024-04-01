@@ -6,7 +6,10 @@ const Categories: React.FC = async () => {
   const categories = await fetchCategories();
 
   return (
-    <div className="px-5 lg:px-[70px] py-[30px] lg:py-[60px]">
+    <section
+      id="categories"
+      className="px-5 lg:px-[70px] py-[30px] lg:py-[60px]"
+    >
       <div className="mb-5 font-bold text-[20px]  leading-tight lg:hidden">
         <p className="text-[#181818] leading-tight">Apa saja product</p>
         <p className="text-[#A7BB09]">Saryurmoms?</p>
@@ -21,13 +24,13 @@ const Categories: React.FC = async () => {
           <CategoryCard
             key={idx}
             description={category.description}
-            imgUrl={category.imgUrl}
+            imageUrl={category.imageUrl}
             link={category.link}
             title={category.title}
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

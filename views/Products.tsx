@@ -1,53 +1,18 @@
-"use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import backgroundMobile from "@/public/images/products-mobile-bg.png";
 import backgroundDesktop from "@/public/images/products-desktop-bg.png";
 import { fetchCategories, fetchProducts } from "@/lib/data";
-import ProductCard from "@/components/home/ProductCard";
-import CategoryButton from "@/components/home/CategoryButton";
+import ProductsCategories from "@/components/home/ProductsCategories";
 
-const Products: React.FC = () => {
-  const [products, setProducts] = useState<any[]>([]);
-  const [categories, setCategories] = useState<any[]>([]);
-  const [productsByCategory, setProductsByCategory] = useState<any[]>([]);
-  const [categorySelected, setCategorySelected] = useState("");
-
-  useEffect(() => {
-    setProductsCategories();
-  }, []);
-
-  const setProductsCategories = async () => {
-    const [getProducts, getCategories] = await Promise.all([
-      fetchProducts(),
-      fetchCategories(),
-    ]);
-
-    if (getCategories && getProducts) {
-      const newCategories = getCategories.map(
-        (category: any) => category.title
-      );
-      const newProductsByCategories = getProducts.filter(
-        (product: any) => product.category === newCategories[0]
-      );
-
-      setProducts(getProducts);
-      setProductsByCategory(newProductsByCategories);
-      setCategories(newCategories);
-      setCategorySelected(newCategories[0]);
-    }
-  };
-
-  const onHandleSelectCategory = (category: string) => {
-    setCategorySelected(category);
-    const newProductsByCategories = products.filter(
-      (product) => product.category === category
-    );
-    setProductsByCategory(newProductsByCategories);
-  };
+const Products: React.FC = async () => {
+  const [categories, products] = await Promise.all([
+    fetchCategories(),
+    fetchProducts(),
+  ]);
 
   return (
-    <div className="relative w-full h-[434px] lg:h-[1360px]">
+    <section id="products" className="relative w-full h-[434px] lg:h-[1360px]">
       {/* Background */}
       <Image
         src={backgroundMobile}
@@ -76,40 +41,9 @@ const Products: React.FC = () => {
             Produk Unggulan
           </p>
         </div>
-        {/* Select Category */}
-        <div className="flex justify-center">
-          <div className="flex gap-1 lg:gap-10 flex-nowrap overflow-x-auto no-scrollbar">
-            {categories.map((category, idx) => (
-              <CategoryButton
-                key={idx}
-                name={category}
-                active={categorySelected}
-                onClick={() => {
-                  onHandleSelectCategory(category);
-                }}
-              />
-            ))}
-          </div>
-        </div>
-        {/* Products */}
-        <div className="flex justify-center">
-          <div className="flex gap-[10px] lg:gap-10 flex-nowrap overflow-x-auto no-scrollbar">
-            {productsByCategory.map((product: any, idx) => (
-              <ProductCard
-                key={idx}
-                imageUrl={product.imageUrl}
-                link={product.link}
-                price={product.price}
-                rating={product.rating}
-                sold={product.sold}
-                title={product.title}
-                discount={product.discount}
-              />
-            ))}
-          </div>
-        </div>
+        <ProductsCategories categories={categories} products={products} />
       </div>
-    </div>
+    </section>
   );
 };
 
