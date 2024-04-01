@@ -44,7 +44,8 @@ const Testimoni = () => {
         <Image
           src={backgroundMobile}
           alt="Background Testimoni Mobile"
-          layout="fill"
+          // layout="fill"
+          fill
           objectFit="cover"
           className="absolute inset-0 z-0"
         />
