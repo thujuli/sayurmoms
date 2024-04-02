@@ -7,7 +7,7 @@ import { ShoppingCart, UsersRound, Rocket, LineChart } from "lucide-react";
 
 const AboutUs = () => {
   return (
-    <section id="about_us" className="py-3 lg:py-24">
+    <section id="about_us" className="pt-3 -mb-[40px] lg:py-24 lg:h-[980px]">
       <Container>
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-7/12 lg:pr-12 -mb-4 lg:mb-0 order-2 lg:order-1">

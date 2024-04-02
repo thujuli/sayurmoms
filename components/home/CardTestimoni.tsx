@@ -21,7 +21,7 @@ const CardTestimoni: React.FC<CardTestimoniProps> = ({
     <div className="bg-[#191919]/30 backdrop-blur-md justify-center items-center text-center rounded-[20px] md:rounded-[75px] border-t-2 border-l-2 border-[#A7BB09] p-2 md:p-8 w-[165px] md:w-[600px] h-[180px] md:h-[450px] relative">
       <div className="flex items-center justify-center mb-1 md:mb-6 h-[40px] md:h-[136px] mt-3">
         <div className="relative w-[53px] md:w-[127px] h-[53px] md:h-[127px]">
-          <Image src={avatar} alt="Avatar" layout="fill" objectFit="cover" />
+          <Image src={avatar} alt="Avatar" fill objectFit="cover" />
         </div>
       </div>
       <div className="pt-3 md:pt-4 h-[50px] md:h-[120px]">
