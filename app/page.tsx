@@ -2,6 +2,7 @@ import Banner from "@/views/Banner";
 import Categories from "@/views/Categories";
 import Products from "@/views/Products";
 import AboutUs from "@/views/AboutUs";
+import Footer from "@/views/Footer";
 import Testimoni from "@/views/Testimoni";
 
 export const revalidate = 3600;
@@ -14,6 +15,7 @@ export default function Home() {
       <Banner />
       <AboutUs />
       <Testimoni />
+      <Footer />
     </>
   );
 }
