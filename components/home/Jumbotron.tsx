@@ -21,7 +21,7 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
   const [jumbotron, setJumbotron] = React.useState<any[]>([]);
   const [emblaRef] = useEmblaCarousel(
     { loop: true, direction: "ltr", dragFree: true },
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+    [Autoplay({ delay: 1000, stopOnInteraction: false })]
   );
   const fetchJumbotron = async () => {
     try {
@@ -48,13 +48,13 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
   }, []);
 
   return isDesktop ? (
-    <div>
+    <div className="relative z-10">
       <div ref={emblaRef} dir="ltr">
         <Carousel opts={{ loop: true }}>
           <CarouselContent>
             {jumbotron.map((val, idx) => (
               <CarouselItem key={idx}>
-                <div className="relative h-[750px]">
+                <div className="relative h-[800px]">
                   <Image
                     src={val}
                     alt="Image Jumbotron"
@@ -70,6 +70,8 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
           {/* Show prev/next buttons only if autoplay is not working */}
           <CarouselPrevious className="left-6 top-1/2 -translate-y-1/4 cursor-pointer bg-black text-white"></CarouselPrevious>
           <CarouselNext className="right-8 top-1/2 -translate-y-1/2 cursor-pointer bg-black text-white"></CarouselNext>
+          {/* Gunakan untuk button cek sekarang */}
+          {/* Gunakan untuk Pesan Sekarang */}
         </Carousel>
       </div>
     </div>
@@ -77,11 +79,11 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
     <div className="overflow-hidden" ref={emblaRef}>
       <div className="embla_container flex">
         {jumbotron.map((imageUrl, index) => (
-          <div className="flex-[0_0_100%] min-w-0 rounded-b-lg" key={index}>
+          <div className="flex-[0_0_100%] min-w-0 rounded-b-xl" key={index}>
             <Image
               src={imageUrl}
               alt={`Jumbotron Image ${index}`}
-              className="w-full"
+              className="w-full rounded-b-2xl"
               width={390}
               height={220}
             />
