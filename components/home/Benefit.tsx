@@ -1,102 +1,69 @@
 "use client";
-import { useMediaQuery } from "@/hooks/use-media-query";
+
 import Image from "next/image";
 import * as React from "react";
 import bananas from "../../public/images/bananas.jpg";
+import bananasMobile from "../../public/images/bananas mobile.png";
 import { benefits } from "@/helper";
 import {
   Card,
-  CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
-interface IBenefitProps {}
+interface IBenefitProps { }
 
 const Benefit: React.FunctionComponent<IBenefitProps> = (props) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
-  console.log(isDesktop);
+  return (
+    <div className="min-h-fit relative">
+      {/* For  Mobile */}
+      <div className="relative z-0 md:-top-[100px]">
+        <Image
+          src={isDesktop ? bananasMobile : bananas}
+          alt={isDesktop ? "Bananas Mobile" : "Bananas"}
+          quality={100}
+          sizes="(max-width: 640px) 100vw, 640px"
+          className={`rounded-b-3xl ${isDesktop
+            ? "border border-b-8 border-b-[#FF9A24] shadow-lg"
+            : "border border-b-8 border-b-[#E8FE3B] shadow-lg"
+            }`}
+        />
+      </div>
 
-  return isDesktop ? (
-    // Desktop view
-    <div className="min-h-fit relative">
-      <div className="relative -top-[110px]">
-        <Image
-          src={bananas}
-          alt="alt"
-          quality={100}
-          sizes="80vh"
-          className="rounded-b-3xl border border-b-8 border-b-[#FF9A24] shadow-lg"
-        />
-      </div>
-      <div className="absolute text-[#f8f8f8] top-[100px] left-[20px]">
-        <div className="container text-[64px] mx-20 mt-20 -my-2 font-[325px] leading-[normal]">
+      <div className="absolute text-[#f8f8f8] top-[-60px] md:top-[-30px] left-[-90px] font-bold md:left-[20px]">
+        <div className="container text-[20px] md:text-[64px] mx-20 mt-20 -my-2 font-[325px] leading-[normal]">
           <p>Mengapa harus</p>
           <p>Sayurmoms?</p>
         </div>
       </div>
-      <div className="absolute flex gap-[10px] top-[500px] justify-center ">
+      <div className="absolute md:flex top-[300px] flex justify-center gap-2 md:gap-4 ">
         {benefits.map((val, idx) => (
-          <Card
-            key={idx}
-            className="inline-flex m-8 border border-collapse border-orange-500 rounded-xl"
-          >
-            <CardTitle className="flex-1 flex justify-center items-center ">
-              <div className="bg-[#CBE023] p-3 rounded-2xl flex-wrap">
-                <Image
-                  src={val.img}
-                  alt="alt"
-                  width={30}
-                  height={30}
-                  quality={100}
-                />
-              </div>
-            </CardTitle>
-            <CardContent className="mt-7 text-[32px] text-center text-[#181818] font-[415px]">
-              {val.desc}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </div>
-  ) : (
-    // Mobile view
-    <div className="min-h-fit relative">
-      <div className="relative -top-[20px]">
-        <Image
-          src={bananas}
-          alt="alt"
-          quality={100}
-          sizes="80vh"
-          className="rounded-b-3xl border border-b-8 border-b-[#FF9A24] shadow-lg"
-        />
-      </div>
-      <div className="absolute text-[#f8f8f8] top-[100px] left-[20px]">
-        <div className="container text-[20px] -mt-24 -my-2 font-[325px] leading-[normal]">
-          <p>Mengapa harus</p>
-          <p>Sayurmoms?</p>
-        </div>
-      </div>
-      <div className="flex flex-row flex-1 w-fit">
-        {benefits.map((val, idx) => (
-          <Card
-            key={idx}
-            className="m-2 w-auto border border-collapse border-orange-500 rounded-xl"
-          >
-            <div className="bg-[#CBE023] p-3 rounded-2xl mx-auto mt-3">
-              <Image
-                src={val.img}
-                alt="alt"
-                width={30}
-                height={30}
-                quality={100}
-              />
-            </div>
-            <div className="p-4 text-center text-[20px] text-[#181818] font-[325px]">
-              {val.desc}
-            </div>
-          </Card>
+          <div key={idx}>
+            <Card
+              className={`${isDesktop ? "bg-[#181818] text-white" : "top-[-200px]"
+                }`}
+            >
+              <CardHeader>
+                <div className="flex flex-col items-center">
+                  {/* For Image */}
+                  <div className="w-7 md:w-11 h-6 md:h-10 flex flex-col relative top-[-10px] md:top-[10px]">
+                    <div className="bg-[#CBE023] md:bg-[#CBE023] md:p-2 rounded-xl">
+                      <Image
+                        src={val.img}
+                        alt="alt"
+                        width={100}
+                        height={20}
+                        className="mx-auto md:object-contain"
+                      />
+                    </div>
+                  </div>
+                  <CardTitle className="mt-1 md:mt-20">{val.desc}</CardTitle>
+                </div>
+              </CardHeader>
+            </Card>
+          </div>
         ))}
       </div>
     </div>
