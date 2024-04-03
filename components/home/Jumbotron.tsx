@@ -13,11 +13,11 @@ import whatsapp from "@/public/images/Vector.png";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ShoppingBasket } from "lucide-react";
-import { CategoryData } from "@/lib/types";
+import { CarouselData, CategoryData } from "@/lib/types";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 
 interface IJumbotronProps {
-  carousel?: CategoryData[];
+  carousel?: CarouselData[];
 }
 
 const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
