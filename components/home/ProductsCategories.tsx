@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { CategoryData, ProductData } from "@/lib/types";
 import CategoryButton from "./CategoryButton";
 import { Star } from "lucide-react";
+import { eventGA } from "@/lib/gtag";
 
 interface ProductCardProps {
   imageUrl: string;
@@ -115,6 +116,13 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
           <a href={link} target="_blank">
             <button
               type="button"
+              onClick={() => {
+                eventGA({
+                  action: "event_click_landing",
+                  category: "popular_products",
+                  label: title,
+                });
+              }}
               className="px-5 lg:px-[50px] py-1 lg:py-6 rounded-lg lg:rounded-[20px] bg-[#181818] text-sm lg:text-[30px] text-[#FDFDFD]"
             >
               Beli
