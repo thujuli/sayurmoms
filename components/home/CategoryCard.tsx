@@ -4,14 +4,14 @@ import background from "@/public/images/category-card-bg.png";
 import { ArrowRight } from "lucide-react";
 
 interface Props {
-  imgUrl: string;
+  imageUrl: string;
   title: string;
   description: string;
   link: string;
 }
 
 const CategoryCard: React.FC<Props> = (props) => {
-  const { description, imgUrl, link, title } = props;
+  const { description, imageUrl, link, title } = props;
   return (
     <div className="group relative w-full h-[90px] lg:h-[392px] rounded-2xl lg:rounded-3xl lg:shadow-md border border-[#F79420] lg:border-[#E2E8F0] lg:hover:border-[#F79420]">
       <Image
@@ -24,7 +24,7 @@ const CategoryCard: React.FC<Props> = (props) => {
       <div className="absolute flex gap-4 w-full h-full py-[7px] lg:pt-[27px] lg:pb-[37px] pr-[11px] lg:pr-[42px] lg:pl-2">
         <div className="relative w-1/2">
           <Image
-            src={imgUrl}
+            src={imageUrl}
             alt={title}
             fill
             sizes="100vw"

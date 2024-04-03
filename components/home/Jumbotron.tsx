@@ -10,9 +10,7 @@ import {
 import { getCarousel } from "@/lib/contentful";
 import Image from "next/image";
 import { useMediaQuery } from "@/hooks/use-media-query";
-
 import whatsapp from '@/public/images/Vector.png'
-
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ShoppingBasket } from "lucide-react";
@@ -73,7 +71,7 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
           {/* Show prev/next buttons only if autoplay is not working */}
           <CarouselPrevious className="left-6 top-1/2 -translate-y-1/4 cursor-pointer bg-black text-white"></CarouselPrevious>
           <CarouselNext className="right-8 top-1/2 -translate-y-1/2 cursor-pointer bg-black text-white"></CarouselNext>
-        </Carousel>
+]        </Carousel>
       </div>
       {/* Gunakan untuk button cek sekarang */}
       {jumbotron.map(
