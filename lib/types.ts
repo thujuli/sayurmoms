@@ -15,3 +15,9 @@ export interface ProductData {
   category: string;
   link: string;
 }
+
+export interface CarouselData {
+  title: string;
+  imageUrl: string;
+  link: string;
+}
