@@ -7,45 +7,38 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { getCarousel } from "@/lib/contentful";
 import Image from "next/image";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import whatsapp from '@/public/images/Vector.png'
+import whatsapp from "@/public/images/Vector.png";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ShoppingBasket } from "lucide-react";
+import { CategoryData } from "@/lib/types";
+import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 
-interface IJumbotronProps { }
+interface IJumbotronProps {
+  carousel?: CategoryData[];
+}
 
 const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
+  const { carousel } = props;
+
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [jumbotron, setJumbotron] = React.useState<any[]>([]);
   const [emblaRef] = useEmblaCarousel(
     { loop: true, direction: "ltr", dragFree: true },
-    [Autoplay({ delay: 1000, stopOnInteraction: false })]
+    [Autoplay({ delay: 5000, stopOnInteraction: false })]
   );
-  const fetchJumbotron = async () => {
-    try {
-      const res = await getCarousel();
-      if (Array.isArray(res)) {
-        const newCarousel = res.map((val, idx) => {
-          if (typeof val.image?.fields?.file?.url === "string") {
-            return `https:${val.image.fields.file.url}`;
-          } else {
-            return "";
-          }
-        });
-        setJumbotron(newCarousel);
-      } else {
-        throw new Error("Response is not an array.");
-      }
-    } catch (error) {
-      console.log(error);
+
+  const setFetchCarousel = async () => {
+    if (carousel) {
+      setJumbotron(carousel);
     }
   };
 
   React.useEffect(() => {
-    fetchJumbotron();
+    setFetchCarousel();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isDesktop ? (
@@ -53,38 +46,38 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
       <div ref={emblaRef} dir="ltr">
         <Carousel opts={{ loop: true }}>
           <CarouselContent>
-            {jumbotron.map((val, idx) => (
-              <CarouselItem key={idx}>
-                <div className="relative h-[800px]">
+            {jumbotron.map((val: any, idx) => (
+              <CarouselItem key={idx} className="relative">
+                <AspectRatio ratio={48 / 25}>
                   <Image
-                    src={val}
+                    src={val.imageUrl}
                     alt="Image Jumbotron"
                     fill
                     quality={100}
-                    sizes="100vh"
+                    sizes="100vw"
                     className="contain"
                   />
-                </div>
+                </AspectRatio>
+                {/* Kode tombol "Cek Sekarang" */}
+                <a href={val.link} target="_blank">
+                  <button
+                    className={`absolute z-20 bottom-[13%] left-[10.5%] bg-[#232323] text-white px-4 py-2 rounded-[50px]`}
+                  >
+                    Cek Sekarang
+                  </button>
+                </a>
               </CarouselItem>
             ))}
           </CarouselContent>
           {/* Show prev/next buttons only if autoplay is not working */}
           <CarouselPrevious className="left-6 top-1/2 -translate-y-1/4 cursor-pointer bg-black text-white"></CarouselPrevious>
           <CarouselNext className="right-8 top-1/2 -translate-y-1/2 cursor-pointer bg-black text-white"></CarouselNext>
-]        </Carousel>
+        </Carousel>
       </div>
-      {/* Gunakan untuk button cek sekarang */}
       {jumbotron.map(
         (val, idx) =>
           idx === 0 && (
             <div key={idx} className="absolute top-4 right-4">
-              {/* Kode tombol "Cek Sekarang" */}
-              <button
-                className={`bg-[#232323] text-white px-4 py-2 rounded-[50px] relative top-[650px] left-[-1130px] md:${idx !== 0 ? "hidden" : ""
-                  }`}
-              >
-                Cek Sekarang
-              </button>
               <div className="absolute top-[500px] right-16 cursor-pointer">
                 <Image
                   src={whatsapp}
@@ -102,23 +95,23 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
         <span>
           <ShoppingBasket className="mr-2" />
         </span>
-        <span>
-          Pesan Sekarang
-        </span>
+        <span>Pesan Sekarang</span>
       </div>
-    </div >
+    </div>
   ) : (
     <div className="overflow-hidden" ref={emblaRef}>
       <div className="embla_container flex relative z-10">
-        {jumbotron.map((imageUrl, index) => (
+        {jumbotron.map((val: any, index) => (
           <div className="flex-[0_0_100%] min-w-0 rounded-b-3xl" key={index}>
-            <Image
-              src={imageUrl}
-              alt={`Jumbotron Image ${index}`}
-              className="w-full rounded-b-3xl"
-              width={390}
-              height={220}
-            />
+            <AspectRatio ratio={39 / 22}>
+              <Image
+                src={val.imageUrl}
+                alt={`Jumbotron Image ${index}`}
+                fill
+                sizes="100vw"
+                className="w-full rounded-b-3xl"
+              />
+            </AspectRatio>
           </div>
         ))}
       </div>
