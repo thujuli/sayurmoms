@@ -2,9 +2,10 @@
 import { numberFormat, priceToIDR } from "@/lib/parser";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import starIcon from "@/public/icons/star.svg";
 import { CategoryData, ProductData } from "@/lib/types";
 import CategoryButton from "./CategoryButton";
+import { Star } from "lucide-react";
+import { eventGA } from "@/lib/gtag";
 
 interface ProductCardProps {
   imageUrl: string;
@@ -68,17 +69,37 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
           <div className="grid grid-cols-2 lg:gap-y-5 mb-1 lg:mb-5">
             {/* Star */}
             <div className="flex gap-[1px] items-center">
-              {Array(Math.round(rating))
+              {Array(5)
                 .fill(null)
-                .map((val, idx) => (
-                  <span key={idx}>
-                    <Image
-                      src={starIcon}
-                      alt="Star Icon"
-                      width={32}
-                      height={32}
-                    />
-                  </span>
+                .map((_, idx) => (
+                  <Star
+                    key={idx}
+                    className={`lg:hidden ${
+                      idx < Math.round(rating)
+                        ? "fill-[#A7BB09]"
+                        : "fill-[#909090]"
+                    }`}
+                    fill="none"
+                    strokeWidth="0"
+                    width={9}
+                    height={9}
+                  />
+                ))}
+              {Array(5)
+                .fill(null)
+                .map((_, idx) => (
+                  <Star
+                    key={idx}
+                    className={`hidden lg:inline-block ${
+                      idx < Math.round(rating)
+                        ? "fill-[#A7BB09]"
+                        : "fill-[#909090]"
+                    }`}
+                    fill="none"
+                    strokeWidth="0"
+                    width={32}
+                    height={32}
+                  />
                 ))}
             </div>
             {/* Rating */}
@@ -95,6 +116,13 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
           <a href={link} target="_blank">
             <button
               type="button"
+              onClick={() => {
+                eventGA({
+                  action: "event_click_landing",
+                  category: "popular_products",
+                  label: title,
+                });
+              }}
               className="px-5 lg:px-[50px] py-1 lg:py-6 rounded-lg lg:rounded-[20px] bg-[#181818] text-sm lg:text-[30px] text-[#FDFDFD]"
             >
               Beli
