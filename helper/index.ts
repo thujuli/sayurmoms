@@ -11,26 +11,32 @@ import verified from "../public/images/Group 1233.png";
 export const nav_link = [
   {
     href: "/",
+    to: "home",
     label: "Beranda",
   },
   {
     href: "/",
+    to: "categories",
     label: "Produk Unggulan",
   },
   {
     href: "/",
+    to: "about_us",
     label: "Tentang Kami",
   },
   {
     href: "/",
+    to: "products",
     label: "Produk",
   },
   {
     href: "/",
+    to: "testimoni",
     label: "Ulasan",
   },
   {
     href: "/",
+    to: "faq_footer",
     label: "FAQ",
   },
 ];
