@@ -77,14 +77,14 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
       {jumbotron.map(
         (val, idx) =>
           idx === 0 && (
-            <div key={idx} className="absolute top-4 right-4">
-              <div className="absolute top-[500px] right-16 cursor-pointer">
+            <div key={idx} className="absolute top-[-70px] right-[5px]">
+              <div className="relative top-[500px] right-16 cursor-pointer">
                 <Image
                   src={whatsapp}
                   alt="WhatsApp Icon"
-                  width={300}
+                  width={124}
                   height={124}
-                  className="border-2 border-solid border-white rounded-[75%] bg-gradient-to-r from-[#25CF43] to-[#61FD7D]"
+                  className="border-8 border-solid border-white rounded-[50%] bg-gradient-to-r from-[#25CF43] to-[#61FD7D]"
                 />
               </div>
             </div>
@@ -99,8 +99,8 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
       </div>
     </div>
   ) : (
-    <div className="overflow-hidden" ref={emblaRef}>
-      <div className="embla_container flex relative z-10">
+    <div className="overflow-hidden relative top-[40px]" ref={emblaRef}>
+      <div className="embla_container flex relative z-0">
         {jumbotron.map((val: any, index) => (
           <div className="flex-[0_0_100%] min-w-0 rounded-b-3xl" key={index}>
             <AspectRatio ratio={39 / 22}>
@@ -112,6 +112,13 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
                 className="w-full rounded-b-3xl"
               />
             </AspectRatio>
+            <a href={val.link} target="_blank">
+              <button
+                className={`relative z-0 bottom-[18%] left-[8%] bg-[#232323] text-white px-2 py-1 rounded-[20px] text-[10px]`}
+              >
+                Cek Sekarang
+              </button>
+            </a>
           </div>
         ))}
       </div>
