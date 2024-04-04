@@ -82,7 +82,7 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
                 <Image
                   src={whatsapp}
                   alt="WhatsApp Icon"
-                  width={124}
+                  width={300}
                   height={124}
                   className="border-2 border-solid border-white rounded-[75%] bg-gradient-to-r from-[#25CF43] to-[#61FD7D]"
                 />
