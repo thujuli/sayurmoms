@@ -128,7 +128,7 @@ const Footer = () => {
                   <p className="text-sm text-[#707070] mb-2">Daging</p>
                   <p className="text-sm text-[#707070] mb-2">Seafood</p>
                   <p className="text-sm text-[#707070] mb-2">Frozen Food</p>
-                  <p className="text-sm text-[#503f3f] mb-2">Bumbu Dapur</p>
+                  <p className="text-sm text-[#707070] mb-2">Bumbu Dapur</p>
                   <p className="text-sm text-[#707070]">Bahan Olahan</p>
                 </div>
                 <div>
@@ -138,20 +138,21 @@ const Footer = () => {
                     Terms of Services
                   </p>
                   <p className="text-sm text-[#707070] mb-6">Discount</p>
-                  <h3 className="text-lg font-bold mb-4">E-Commerce</h3>
-                  <div className="flex items-center">
+                  <h3 className="text-lg font-bold mb-3">E-Commerce</h3>
+                  <div className="flex flex-col pr-20 gap-2">
                     <Image
                       src={shopee}
                       alt="Shopee Logo"
-                      width={100}
+                      width={90}
                       height={32}
+                      className="h-7"
                     />
                     <Image
                       src={tokopedia}
                       alt="Tokopedia Logo"
-                      width={107}
+                      width={90}
                       height={32}
-                      className="ml-4"
+                      className="-ml-1 w-24 h-8"
                     />
                   </div>
                 </div>
