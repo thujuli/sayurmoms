@@ -22,7 +22,7 @@ const getEntriesByType = async (type: string) => {
 export const getCarousel = async () => {
   try {
     const response = await getEntriesByType("carousel");
-    const carousel = response?.map((item) => item.fields);
+    const carousel = response?.map((item: any) => item.fields);
     return carousel;
   } catch (error) {
     console.error(resolveError(error));
@@ -32,7 +32,7 @@ export const getCarousel = async () => {
 export const getBanner = async () => {
   try {
     const response = await getEntriesByType("banner");
-    const banner = response?.map((item) => item.fields);
+    const banner = response?.map((item: any) => item.fields);
     return banner;
   } catch (error) {
     console.error(resolveError(error));
