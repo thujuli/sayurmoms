@@ -40,7 +40,7 @@ const Testimoni = () => {
       </div>
 
       {/* Bagian ini hanya akan tampil pada ukuran layar dibawah md */}
-      <div className="relative md:hidden w-full h-[360px] overflow-hidden z-10">
+      <div className="relative lg:hidden w-full h-[360px] overflow-hidden z-10">
         <Image
           src={backgroundMobile}
           alt="Background Testimoni Mobile"
