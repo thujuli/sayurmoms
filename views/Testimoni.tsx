@@ -10,7 +10,7 @@ const Testimoni = () => {
   return (
     <section id="testimoni" className="relative">
       {/* Bagian ini hanya akan tampil pada ukuran layar md ke atas */}
-      <div className="hidden md:hidden lg:block relative inset-0 z-0 lg:h-[1018px]">
+      <div className="hidden md:block lg:block relative inset-0 z-0 lg:h-[1018px]">
         <Image
           src={backgroundDesktop}
           alt="Background Testimoni Desktop"
@@ -40,7 +40,7 @@ const Testimoni = () => {
       </div>
 
       {/* Bagian ini hanya akan tampil pada ukuran layar dibawah md */}
-      <div className="relative lg:hidden w-full h-[360px] overflow-hidden z-10">
+      <div className="relative md:hidden lg:hidden w-full h-[360px] overflow-hidden z-10">
         <Image
           src={backgroundMobile}
           alt="Background Testimoni Mobile"
