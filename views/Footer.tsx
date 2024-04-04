@@ -97,7 +97,7 @@ const Footer = () => {
         <div className="w-full lg:h-[1720px] bg-[#F8F8F8] rounded-[35px] mt-[15px] lg:mt-[100px] flex flex-col lg:block">
           <div className="lg:grid lg:grid-cols-3 lg:justify-between lg:w-full lg:px-24 lg:pt-32 gap-8">
             {/* Mobile */}
-            <div className="flex flex-col relative md:hidden lg:hidden p-6 h-[700px]">
+            <div className="flex flex-col relative lg:hidden p-6 h-[700px]">
               <div className="flex flex-col items-start mb-6">
                 <Image
                   src={sayurmoms}
