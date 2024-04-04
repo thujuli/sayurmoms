@@ -120,7 +120,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
                 eventGA({
                   action: "event_click_landing",
                   category: "popular_products",
-                  label: title,
+                  label: "product_" + title,
                 });
               }}
               className="px-5 lg:px-[50px] py-1 lg:py-6 rounded-lg lg:rounded-[20px] bg-[#181818] text-sm lg:text-[30px] text-[#FDFDFD]"

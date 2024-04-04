@@ -6,6 +6,7 @@ export const FAQ_ITEMS = [
   },
   {
     question: "Kapan produk saya akan dikirim?",
+    prefix: "Kapan dikirim",
     answer: `• Produk akan dikirim H+1 (pukul 09.30-16.00), apabila pesanan masuk maksimal pukul 21.00 pada hari pemesanan.
       • Produk akan dikirim H+2, apabila dipesan di atas pukul 21.00
       • Produk dapat dikirim di Hari H, namun harus konfirmasi admin terlebih dahulu

@@ -13,8 +13,9 @@ import whatsapp from "@/public/images/Vector.png";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ShoppingBasket } from "lucide-react";
-import { CarouselData, CategoryData } from "@/lib/types";
+import { CarouselData } from "@/lib/types";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
+import { eventGA } from "@/lib/gtag";
 
 interface IJumbotronProps {
   carousel?: CarouselData[];
@@ -61,6 +62,13 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
                 {/* Kode tombol "Cek Sekarang" */}
                 <a href={val.link} target="_blank">
                   <button
+                    onClick={() => {
+                      eventGA({
+                        action: "event_click_landing",
+                        category: "event_click_carousel",
+                        label: "carousel_" + val.title,
+                      });
+                    }}
                     className={`absolute z-20 bottom-[13%] left-[10.5%] bg-[#232323] text-white px-4 py-2 rounded-[50px]`}
                   >
                     Cek Sekarang
@@ -114,6 +122,13 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
             </AspectRatio>
             <a href={val.link} target="_blank">
               <button
+                onClick={() => {
+                  eventGA({
+                    action: "event_click_landing",
+                    category: "carousel",
+                    label: "carousel_" + val.title,
+                  });
+                }}
                 className={`relative z-0 bottom-[18%] left-[8%] bg-[#232323] text-white px-2 py-1 rounded-[20px] text-[10px]`}
               >
                 Cek Sekarang

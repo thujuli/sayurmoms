@@ -3,8 +3,8 @@ import { resolveError } from "./error";
 
 const createContentClient = () => {
   return createClient({
-    space: "5p8snq1zoq7a",
-    accessToken: "8kKhQf2Q81Ndx6gxzty-FWeTnbc498GB3cxAiedrfbY",
+    space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE || "",
+    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_KEY || "",
   });
 };
 

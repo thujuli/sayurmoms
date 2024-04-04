@@ -18,6 +18,7 @@ import shopee_pay from "@/public/images/shopee_pay.png";
 import tractor from "@/public/images/tractor.png";
 import faq_mobile from "@/public/images/faq_footer_mobile.png";
 import FAQ from "@/public/images/FAQ.png";
+import { eventGA } from "@/lib/gtag";
 
 const Footer = () => {
   return (
@@ -60,7 +61,11 @@ const Footer = () => {
                 key={index}
                 value={`item-${index}`}
                 onClick={() => {
-                  console.log(item.prefix);
+                  eventGA({
+                    action: "event_click_landing",
+                    category: "faq",
+                    label: "faq_" + item.prefix,
+                  });
                 }}
                 className="w-[340px] py-2 lg:py-0 bg-[#181818] rounded-[10px] mb-3 lg:mb-5 lg:w-[1216.6px] lg:rounded-[40px]"
               >
