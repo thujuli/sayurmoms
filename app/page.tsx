@@ -6,6 +6,7 @@ import Footer from "@/views/Footer";
 import Testimoni from "@/views/Testimoni";
 import MainMenu from "@/components/home/MainMenu";
 import Carousel from "@/views/Carousel";
+import Benefit from "@/components/home/Benefit";
 
 export const revalidate = 3600;
 
@@ -14,6 +15,7 @@ export default function Home() {
     <>
       <MainMenu />
       <Carousel />
+      <Benefit />
       <Categories />
       <Products />
       <Banner />
