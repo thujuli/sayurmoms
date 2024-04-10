@@ -17,8 +17,8 @@ import { CarouselData } from "@/lib/types";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { eventGA } from "@/lib/gtag";
 import Link from "next/link";
-import tokopedia from '@/public/images/tokopedia.png';
-import shopee from '@/public/images/shopee.png';
+import tokopedia from "@/public/images/tokopedia.png";
+import shopee from "@/public/images/shopee.png";
 
 interface IJumbotronProps {
   carousel?: CarouselData[];
@@ -30,8 +30,8 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
   const [dropdownVisible, setDropdownVisible] = React.useState<boolean>(false);
 
   const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible)
-  }
+    setDropdownVisible(!dropdownVisible);
+  };
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [jumbotron, setJumbotron] = React.useState<any[]>([]);
   const [emblaRef] = useEmblaCarousel(
@@ -90,24 +90,33 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
           <CarouselNext className="right-8 top-1/2 -translate-y-1/2 cursor-pointer bg-black text-white"></CarouselNext>
         </Carousel>
       </div>
-      {jumbotron.map(
-        (val, idx) =>
-          idx === 0 && (
-            <div key={idx} className="absolute top-[-70px] right-[5px]">
-              <Link href='https://api.whatsapp.com/' className="relative top-[500px] right-16 cursor-pointer">
-                <Image
-                  src={whatsapp}
-                  alt="WhatsApp Icon"
-                  width={124}
-                  height={124}
-                  className="border-8 border-solid border-white rounded-[50%] bg-gradient-to-r from-[#25CF43] to-[#61FD7D]"
-                />
-              </Link>
-            </div>
-          )
-      )}
+      <div className="fixed z-50 bottom-[2%] right-[2%]">
+        <a
+          href="https://wa.link/x4ajgs"
+          target="_blank"
+          className="relative cursor-pointer"
+          onClick={() => {
+            eventGA({
+              action: "event_click_landing",
+              category: "event_click_whatsapp",
+              label: "whatsapp",
+            });
+          }}
+        >
+          <Image
+            src={whatsapp}
+            alt="WhatsApp Icon"
+            width={120}
+            height={120}
+            className="border-8 border-solid border-white rounded-[50%] bg-gradient-to-r from-[#25CF43] to-[#61FD7D]"
+          />
+        </a>
+      </div>
       {/* Gunakan untuk Pesan Sekarang */}
-      <div className="fixed top-[200px] right-[-65px] transform -rotate-90 flex justify-center items-center bg-[#232323] text-[#F8F8F8] font-bold cursor-pointer" onClick={toggleDropdown}>
+      <div
+        className="fixed z-50 top-[200px] right-[-65px] transform -rotate-90 flex justify-center items-center bg-[#232323] text-[#F8F8F8] font-bold cursor-pointer"
+        onClick={toggleDropdown}
+      >
         <span>
           <ShoppingBasket className="mr-2" />
         </span>
@@ -120,13 +129,15 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
               href="https://shopee.co.id/sayurmoms.id"
               className="block mb-2 w-[119px]"
               target="_blank"
+              onClick={() => {
+                eventGA({
+                  action: "event_click_landing",
+                  category: "event_click_ecommerce",
+                  label: "ecom_shopee",
+                });
+              }}
             >
-              <Image
-                src={shopee}
-                alt="Shopee Logo"
-                width={119}
-                height={46}
-              />
+              <Image src={shopee} alt="Shopee Logo" width={119} height={46} />
             </a>
           </div>
           <div className="block">
@@ -134,6 +145,13 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
               href="https://www.tokopedia.com/sayurmoms"
               className="block mb-2 w-[127px]"
               target="_blank"
+              onClick={() => {
+                eventGA({
+                  action: "event_click_landing",
+                  category: "event_click_ecommerce",
+                  label: "ecom_tokopedia",
+                });
+              }}
             >
               <Image
                 src={tokopedia}
@@ -148,10 +166,19 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
             <a
               href="https://sayurmoms.take.app/"
               target="_blank"
+              onClick={() => {
+                eventGA({
+                  action: "event_click_landing",
+                  category: "event_click_ecommerce",
+                  label: "ecom_takeapp",
+                });
+              }}
             >
               <div className="flex items-center">
                 <Globe color="#909090" className="mr-1" />
-                <span className="text-[16px] text-center tracking-[0.4px]">sayurmoms.take.app</span>
+                <span className="text-[16px] text-center tracking-[0.4px]">
+                  sayurmoms.take.app
+                </span>
               </div>
             </a>
           </div>
@@ -162,7 +189,10 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
     <div className="overflow-hidden relative top-[40px]" ref={emblaRef}>
       <div className="embla_container flex relative z-0">
         {jumbotron.map((val: any, index) => (
-          <div className="flex-[0_0_100%] min-w-0 rounded-b-3xl relative" key={index}>
+          <div
+            className="flex-[0_0_100%] min-w-0 rounded-b-3xl relative"
+            key={index}
+          >
             <AspectRatio ratio={39 / 22}>
               <Image
                 src={val.imageUrl}
@@ -189,7 +219,32 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
           </div>
         ))}
       </div>
-      <div className="fixed top-[100px] right-[-65px] transform -rotate-90 flex justify-center bg-[#232323] text-[#F8F8F8] font-bold px-2 py-2 rounded-[50px]" onClick={toggleDropdown}>
+      <div className="fixed z-50 bottom-[2%] right-[2%]">
+        <a
+          href="https://wa.link/x4ajgs"
+          target="_blank"
+          className="relative cursor-pointer"
+          onClick={() => {
+            eventGA({
+              action: "event_click_landing",
+              category: "event_click_whatsapp",
+              label: "whatsapp",
+            });
+          }}
+        >
+          <Image
+            src={whatsapp}
+            alt="WhatsApp Icon"
+            width={50}
+            height={50}
+            className="border-8 border-solid border-white rounded-[50%] bg-gradient-to-r from-[#25CF43] to-[#61FD7D]"
+          />
+        </a>
+      </div>
+      <div
+        className="z-50 fixed top-[100px] right-[-65px] transform -rotate-90 flex justify-center bg-[#232323] text-[#F8F8F8] font-bold px-2 py-2 rounded-[50px]"
+        onClick={toggleDropdown}
+      >
         <span>
           <ShoppingBasket className="mr-2" />
         </span>
@@ -202,13 +257,15 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
               href="https://shopee.co.id/sayurmoms.id"
               className="block mb-2 w-[119px]"
               target="_blank"
+              onClick={() => {
+                eventGA({
+                  action: "event_click_landing",
+                  category: "event_click_ecommerce",
+                  label: "ecom_shopee",
+                });
+              }}
             >
-              <Image
-                src={shopee}
-                alt="Shopee Logo"
-                width={119}
-                height={46}
-              />
+              <Image src={shopee} alt="Shopee Logo" width={119} height={46} />
             </a>
           </div>
           <div className="block">
@@ -216,6 +273,13 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
               href="https://www.tokopedia.com/sayurmoms"
               className="block mb-2 w-[127px]"
               target="_blank"
+              onClick={() => {
+                eventGA({
+                  action: "event_click_landing",
+                  category: "event_click_ecommerce",
+                  label: "ecom_tokopedia",
+                });
+              }}
             >
               <Image
                 src={tokopedia}
@@ -230,10 +294,19 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
             <a
               href="https://sayurmoms.take.app/"
               target="_blank"
+              onClick={() => {
+                eventGA({
+                  action: "event_click_landing",
+                  category: "event_click_ecommerce",
+                  label: "ecom_takeapp",
+                });
+              }}
             >
               <div className="flex items-center">
                 <Globe color="#909090" className="mr-1" />
-                <span className="text-[16px] text-center tracking-[0.4px]">sayurmoms.take.app</span>
+                <span className="text-[16px] text-center tracking-[0.4px]">
+                  sayurmoms.take.app
+                </span>
               </div>
             </a>
           </div>
