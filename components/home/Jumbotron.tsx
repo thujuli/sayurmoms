@@ -12,10 +12,13 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import whatsapp from "@/public/images/Vector.png";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { ShoppingBasket } from "lucide-react";
+import { Globe, ShoppingBasket } from "lucide-react";
 import { CarouselData } from "@/lib/types";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { eventGA } from "@/lib/gtag";
+import Link from "next/link";
+import tokopedia from '@/public/images/tokopedia.png';
+import shopee from '@/public/images/shopee.png';
 
 interface IJumbotronProps {
   carousel?: CarouselData[];
@@ -24,6 +27,11 @@ interface IJumbotronProps {
 const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
   const { carousel } = props;
 
+  const [dropdownVisible, setDropdownVisible] = React.useState<boolean>(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible)
+  }
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [jumbotron, setJumbotron] = React.useState<any[]>([]);
   const [emblaRef] = useEmblaCarousel(
@@ -86,7 +94,7 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
         (val, idx) =>
           idx === 0 && (
             <div key={idx} className="absolute top-[-70px] right-[5px]">
-              <div className="relative top-[500px] right-16 cursor-pointer">
+              <Link href='https://api.whatsapp.com/' className="relative top-[500px] right-16 cursor-pointer">
                 <Image
                   src={whatsapp}
                   alt="WhatsApp Icon"
@@ -94,23 +102,67 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
                   height={124}
                   className="border-8 border-solid border-white rounded-[50%] bg-gradient-to-r from-[#25CF43] to-[#61FD7D]"
                 />
-              </div>
+              </Link>
             </div>
           )
       )}
       {/* Gunakan untuk Pesan Sekarang */}
-      <div className="absolute top-[200px] right-[-65px] transform -rotate-90 flex justify-center items-center bg-[#232323] text-[#F8F8F8] font-bold">
+      <div className="fixed top-[200px] right-[-65px] transform -rotate-90 flex justify-center items-center bg-[#232323] text-[#F8F8F8] font-bold cursor-pointer" onClick={toggleDropdown}>
         <span>
           <ShoppingBasket className="mr-2" />
         </span>
         <span>Pesan Sekarang</span>
       </div>
+      {dropdownVisible && (
+        <div className="fixed top-[135px] right-[25px] px-2 py-5 shadow-md z-10 bg-[#F3F6EA] rounded-l-xl">
+          <div className="block">
+            <a
+              href="https://shopee.co.id/sayurmoms.id"
+              className="block mb-2 w-[119px]"
+              target="_blank"
+            >
+              <Image
+                src={shopee}
+                alt="Shopee Logo"
+                width={119}
+                height={46}
+              />
+            </a>
+          </div>
+          <div className="block">
+            <a
+              href="https://www.tokopedia.com/sayurmoms"
+              className="block mb-2 w-[127px]"
+              target="_blank"
+            >
+              <Image
+                src={tokopedia}
+                alt="Tokopedia Logo"
+                width={127}
+                height={32}
+                className="-ml-1 w-24 h-8"
+              />
+            </a>
+          </div>
+          <div className="block">
+            <a
+              href="https://sayurmoms.take.app/"
+              target="_blank"
+            >
+              <div className="flex items-center">
+                <Globe color="#909090" className="mr-1" />
+                <span className="text-[16px] text-center tracking-[0.4px]">sayurmoms.take.app</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   ) : (
     <div className="overflow-hidden relative top-[40px]" ref={emblaRef}>
       <div className="embla_container flex relative z-0">
         {jumbotron.map((val: any, index) => (
-          <div className="flex-[0_0_100%] min-w-0 rounded-b-3xl" key={index}>
+          <div className="flex-[0_0_100%] min-w-0 rounded-b-3xl relative" key={index}>
             <AspectRatio ratio={39 / 22}>
               <Image
                 src={val.imageUrl}
@@ -129,7 +181,7 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
                     label: "carousel_" + val.title,
                   });
                 }}
-                className={`relative z-0 bottom-[18%] left-[8%] bg-[#232323] text-white px-2 py-1 rounded-[20px] text-[10px]`}
+                className={`absolute z-10 bottom-[10%] left-[8%] bg-[#232323] text-white px-2 py-1 rounded-[20px] text-[10px]`}
               >
                 Cek Sekarang
               </button>
@@ -137,6 +189,56 @@ const Jumbotron: React.FunctionComponent<IJumbotronProps> = (props) => {
           </div>
         ))}
       </div>
+      <div className="fixed top-[100px] right-[-65px] transform -rotate-90 flex justify-center bg-[#232323] text-[#F8F8F8] font-bold px-2 py-2 rounded-[50px]" onClick={toggleDropdown}>
+        <span>
+          <ShoppingBasket className="mr-2" />
+        </span>
+        <span className="text-[12px]">Pesan Sekarang</span>
+      </div>
+      {dropdownVisible && (
+        <div className="fixed top-[40px] right-[20px] px-2 py-5 shadow-md z-10 bg-[#F3F6EA] rounded-l-xl">
+          <div className="block">
+            <a
+              href="https://shopee.co.id/sayurmoms.id"
+              className="block mb-2 w-[119px]"
+              target="_blank"
+            >
+              <Image
+                src={shopee}
+                alt="Shopee Logo"
+                width={119}
+                height={46}
+              />
+            </a>
+          </div>
+          <div className="block">
+            <a
+              href="https://www.tokopedia.com/sayurmoms"
+              className="block mb-2 w-[127px]"
+              target="_blank"
+            >
+              <Image
+                src={tokopedia}
+                alt="Tokopedia Logo"
+                width={127}
+                height={32}
+                className="-ml-1 w-24 h-8"
+              />
+            </a>
+          </div>
+          <div className="block">
+            <a
+              href="https://sayurmoms.take.app/"
+              target="_blank"
+            >
+              <div className="flex items-center">
+                <Globe color="#909090" className="mr-1" />
+                <span className="text-[16px] text-center tracking-[0.4px]">sayurmoms.take.app</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
