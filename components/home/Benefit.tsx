@@ -17,9 +17,9 @@ interface IBenefitProps { }
 const Benefit: React.FunctionComponent<IBenefitProps> = (props) => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   return (
-    <div className="min-h-fit relative">
+    <div className="min-h-fit relative -z-10">
       {/* For  Mobile */}
-      <div className="relative z-0 md:-top-[100px]">
+      <div className="relative z-0 md:-top-[100px] top-[20px]">
         <Image
           src={isDesktop ? bananasMobile : bananas}
           alt={isDesktop ? "Bananas Mobile" : "Bananas"}
@@ -32,7 +32,7 @@ const Benefit: React.FunctionComponent<IBenefitProps> = (props) => {
         />
       </div>
 
-      <div className="absolute text-[#f8f8f8] top-[-60px] md:top-[-30px] left-[-90px] font-bold md:left-[20px]">
+      <div className="absolute text-[#f8f8f8] top-[-40px] md:top-[-30px] left-[-90px] font-bold md:left-[20px]">
         <div className="container text-[20px] md:text-[64px] mx-20 mt-20 -my-2 font-[325px] leading-[normal]">
           <p>Mengapa harus</p>
           <p>Sayurmoms?</p>
